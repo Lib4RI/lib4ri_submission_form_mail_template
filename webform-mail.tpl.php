@@ -56,7 +56,6 @@ if(!function_exists("find_doc_type")){
 
 <?php print ($email['html'] ? '<p>' : '') . t('Submitted on [submission:date:long]') . ($email['html'] ? '</p>' : ''); ?>
 
-<?php print ($email['html'] ? '<p>' : '') . t('Submitted values are') . ':' . ($email['html'] ? '</p>' : ''); ?>
 
 <?php
         # get components indexes as visualized on the form
@@ -68,12 +67,13 @@ if(!function_exists("find_doc_type")){
         # find files, publication types and group indexes
         $idx=find_components ($node->webform['components'],'file');
         $mail_idx=find_components ($node->webform['components'],'email');
+        $mark_idx=find_components ($node->webform['components'],'markup');
         $temp=find_doc_type($node->webform['components'], $idx);
         $typ = $temp[0];
         $par = $temp[1];
                 
         # remove files, pub types and groups indexes from the components idx array
-        $rm_idx = [$idx,$typ,$par];
+        $rm_idx = [$idx,$typ,$par,$mark_idx];
         foreach ($rm_idx as $key => $rm_array){
             foreach ($rm_array as $key => $value){
                 unset($comp_idx[$value]);
@@ -95,7 +95,7 @@ if(!function_exists("find_doc_type")){
             if (in_array($value, $mail_idx)){
                 $text = str_replace(',', ';', $text);
             }
-            print($node->webform['components'][$key]['name'].': '.$text);
+            print($node->webform['components'][$key]['name'].': '.$text."\n");
             if ($node->webform['components'][$key]['form_key'] == 'bibliography_h')
                 $subsite = $submission->data[$key][0];
         }
