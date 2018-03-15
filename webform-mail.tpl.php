@@ -99,7 +99,7 @@ if(!function_exists("find_doc_type")){
 	            print($node->webform['components'][$key]['name'].': '."\n".$text."\n\n");
         
 	    if ($node->webform['components'][$key]['form_key'] == 'bibliography_h')
-                $subsite = $submission->data[$key][0];
+                $subsite = strtolower($submission->data[$key][0]);
         }
         
         
