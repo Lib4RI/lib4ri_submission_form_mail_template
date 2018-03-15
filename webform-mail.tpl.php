@@ -119,6 +119,10 @@ if(!function_exists("find_doc_type")){
                 }
             }
             print("\n");
+	    print("View the submission:\n");
+            $url = $base_url.'/node/'.$node->nid.'/submission/'.$submission->sid;
+            print(url($url));
+            print("\n\n");
             print("Ingest the publication in DORA:\n");
             $url = $base_url.'/islandora/object/'.$subsite.'%253Apublications/manage/overview/ingest' ;
             print(url($url,array('query' => array('nid' => $node->nid, 'sid' => $submission->sid))));
