@@ -96,7 +96,7 @@ if(!function_exists("find_doc_type")){
                 $text = str_replace(',', ';', $text);
             }
 	    if (!empty($text))
-	            print($node->webform['components'][$key]['name'].': '.$text."\n\n");
+	            print($node->webform['components'][$key]['name'].': '."\n".$text."\n\n");
         
 	    if ($node->webform['components'][$key]['form_key'] == 'bibliography_h')
                 $subsite = $submission->data[$key][0];
