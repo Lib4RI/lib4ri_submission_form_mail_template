@@ -88,15 +88,17 @@ if(!function_exists("find_doc_type")){
         
         foreach ($comp_idx as $key => $value){
             #TODO: string subtitution < and >
-            $text = $submission->data[$key][0]."\n";
+            $text = $submission->data[$key][0];
             foreach ($replacements as $search => $replace){
                 $text = str_replace($search, $replace, $text);
             }
             if (in_array($value, $mail_idx)){
                 $text = str_replace(',', ';', $text);
             }
-            print($node->webform['components'][$key]['name'].': '.$text."\n");
-            if ($node->webform['components'][$key]['form_key'] == 'bibliography_h')
+	    if (!empty($text))
+	            print($node->webform['components'][$key]['name'].': '.$text."\n\n");
+        
+	    if ($node->webform['components'][$key]['form_key'] == 'bibliography_h')
                 $subsite = $submission->data[$key][0];
         }
         
