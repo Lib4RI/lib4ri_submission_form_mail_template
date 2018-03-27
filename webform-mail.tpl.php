@@ -112,11 +112,6 @@ if(!function_exists("find_doc_type")){
                 $uri=file_load($submission->data[$value][0])->uri;
                 $url = file_create_url($uri);
                 $name = basename($uri);
-                $type = $submission->data[$typ[$value]][0];
-                if(!empty($name)){
-                    if(empty($type)){$type='version not specified';}
-                    print($url." (".$type.")\n");
-                }
             }
             print("\n");
 	    print("View the submission:\n");
@@ -136,11 +131,6 @@ if(!function_exists("find_doc_type")){
             foreach ($idx as $key => $value){
                 $uri=file_load($submission->data[$value][0])->uri;
                 $name = basename($uri);
-                $type = $submission->data[$typ[$value]][0];
-                if(!empty($name)){
-                    if(empty($type)){$type='version not specified';}
-                    print($name." (".$type.")\n");
-                }
             }
         }
         ###############################################################
