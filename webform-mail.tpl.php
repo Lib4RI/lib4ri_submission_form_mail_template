@@ -102,43 +102,27 @@ if(!function_exists("find_doc_type")){
                 $subsite = strtolower($submission->data[$key][0]);
         }
         
+
+        print("\nSubmitted documents:\n");
+        # get the file names
+        foreach ($idx as $key => $value){
+	    $uri=file_load($submission->data[$value][0])->uri;
+            $name = basename($uri);
+            if(!empty($name)){
+	        print($name."\n");
+            } 
+        }
         
         ###### internal email ########################################
         if (strpos($email['email'], '@') !== false){
             global $base_url;
-            print("\nSubmitted documents:\n");
-            # get the file names
-            foreach ($idx as $key => $value){
-                $uri=file_load($submission->data[$value][0])->uri;
-                $url = file_create_url($uri);
-                $name = basename($uri);
-                if(!empty($name)){
-                    print($url."\n");
-                }
-            }
-            print("\n");
+            print("\n\n");
 	    print("View the submission:\n");
             $url = $base_url.'/node/'.$node->nid.'/submission/'.$submission->sid;
             print(url($url));
             print("\n\n");
-            print("Ingest the publication in DORA:\n");
-            $url = $base_url.'/islandora/object/'.$subsite.'%253Apublications/manage/overview/ingest' ;
-            print(url($url,array('query' => array('nid' => $node->nid, 'sid' => $submission->sid))));
         }
         ###############################################################
         
-        ###### users email ############################################
-        else{
-            print("\nSubmitted documents:\n");
-            # get the file names
-            foreach ($idx as $key => $value){
-                $uri=file_load($submission->data[$value][0])->uri;
-                $name = basename($uri);
-                if(!empty($name)){
-                    print($name."\n");
-                }
-            }
-        }
-        ###############################################################
  ?>
 
