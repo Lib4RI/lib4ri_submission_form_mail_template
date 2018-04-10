@@ -108,8 +108,9 @@ if(!function_exists("find_doc_type")){
         foreach ($idx as $key => $value){
 	    $uri=file_load($submission->data[$value][0])->uri;
             $name = basename($uri);
+	    $type = str_replace('&nbsp;','',$node->webform['components'][$value]['name']);
             if(!empty($name)){
-	        print($name."\n");
+	        print("$name ($type)\n");
             } 
         }
         
